@@ -1,10 +1,22 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Montserrat, Passion_One, Cascadia_Code } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 
-const montserratSansSerif = Montserrat({
+const montserrat = Montserrat({
   variable: "--font-montserrat",
+  subsets: ["latin"]
+});
+
+const passionOne = Passion_One({
+  variable: "--font-passion-one",
+  weight: ["400", "700", "900"],
+  subsets: ["latin"]
+});
+
+const cascadiaCode = Cascadia_Code({
+  variable: "--font-cascadia-code",
+  subsets: ["latin"]
 })
 
 export const metadata: Metadata = {
@@ -16,7 +28,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${montserratSansSerif.variable} h-full antialiased`}
+      className={`${montserrat.variable} ${passionOne.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <Navbar/>
