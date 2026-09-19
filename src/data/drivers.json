@@ -1,0 +1,21 @@
+[
+    {
+        "id": "verstappen",
+        "number": 3,
+        "firstName":"Max",
+        "lastName": "Verstappen",
+        "nationality":"Dutch",
+        "team":"Red Bull Racing",
+        "teamColor":"#3671C6",
+        "championships":4,
+        "wins":71,
+        "podiums":133,
+        "careerPoints":3589.5
+    },
+    {
+        "id": "leclerc",
+        "number":16,
+        "firstName":"Charles",
+        "lastName":"Leclerc"
+    }
+]

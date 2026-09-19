@@ -2,6 +2,31 @@
 
 export default function Strategy() {
     return (
-        <div></div>
+        <div className="ml-5 mr-5">
+            <h1 className="float mt-10 mx-auto font-heading text-center text-5xl">Pit Wall Strategy</h1>
+            <p className="float text-center italic">Plan a race strategy.</p>
+
+            <main>
+                <div className="controls">
+                    <label htmlFor="race">Race</label>
+                    <select id="race"></select>
+                </div>
+            </main>
+
+            <div>
+                <button>Pre Race Odds</button>
+                <button>Replay the Real Race</button>
+            </div>
+
+            <div>
+                <p>Your Plan</p>
+            </div>
+
+            <div>
+                <p className="bold">Rival</p>
+                <label htmlFor="rival">Race Against</label>
+                <select id="rival"></select>
+            </div>
+        </div>
     );
 }

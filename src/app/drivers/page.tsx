@@ -1,7 +1,17 @@
-
+import drivers from "@/data/drivers.json";
+import {Driver} from "@/types/driver";
+import DriverCard from "@/components/DriverCard";
 
 export default function Drivers() {
     return (
-        <h1 className="mt-10 mx-auto text-center font-heading text-5xl">Drivers</h1>
+        <div>
+            <h1 className="mt-10 mx-auto text-center font-heading text-5xl">Drivers</h1>
+            
+            <div>
+                {(drivers as Driver[]).map((driver) => (
+                    <DriverCard key={driver.id} driver={driver} />
+                ))}
+            </div>
+        </div>
     );
 }
