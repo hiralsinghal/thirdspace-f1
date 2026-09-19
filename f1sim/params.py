@@ -36,5 +36,23 @@ def his(bef):
             for k in ("SC","VSC"):
                 if pl[k][0]:
                     g["r_"+k.lower()].append(pl[k][0]/pl["GREEN"][0])
+
 def _shrink(vals, p, k=20):
     return (len(vals) * float(np.median(vals))+k * p)/ (len(vals)+k) if vals else p
+
+
+
+sc_ratio = lambda g: float(np.clip(_shrink(g["r_sc"], 0.55), 0.35, 0.9))
+vsc_ratio = lambda g: float(np.clip(_shrink(g["r_vsc"], 0.65), 0.4, 0.95))
+
+
+def ex_ante(m, per, g, deg ):
+    N, circ = m["n_laps"], m["circuit"]
+    c = per.get(circ, dict(sc=0, vsc=0, laps=0, pit=[]))
+    r = MAX_STINT_RULE.get((m["year"], circ))
+    if r :
+        caps = {c:min(v, r) for c,v in caps.items()}
+    pit = float(np.median(c["pit"])) if c["pit"] else 0
+    tier = TIER.get(circ,1)
+    return dict(
+        laps=N, curve=c, caps=caps, pit_loss=pit, pit_loss_sc=pit*sc_ratio(g), pit_loss_vsc=pit*vsc_ratio(g),sc_hazard=r("sc"),vsc_hazard=r("vsc"), sc_len=float(np.mean(g["sc_len"])) if g["sc_len"] else 4.0, vsc_len=float(np.mean(g["vsc_len"])) if g["vsc_len"] else 2.0, overtake_delta=OVERTAKE[tier], traffic_p=TRAFFIC_P[tier], traffic_loss=TRAFFIC_LOSS[tier],tier=tier)
