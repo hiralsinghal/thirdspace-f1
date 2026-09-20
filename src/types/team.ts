@@ -8,4 +8,5 @@ export interface Team {
     polePositions: number;
     fastestLaps: number;
     teamColor: string;
+    color: string;
 }

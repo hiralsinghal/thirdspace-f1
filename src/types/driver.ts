@@ -10,4 +10,5 @@ export interface Driver {
     wins: number;
     podiums: number;
     careerPoints: number;
+    color: string;
 }
