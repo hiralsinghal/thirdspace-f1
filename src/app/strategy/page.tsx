@@ -3,7 +3,7 @@
 export default function Strategy() {
     return (
         <div className="ml-5 mr-5">
-            <h1 className="float mt-10 mx-auto font-heading text-center text-5xl">Pit Wall Strategy</h1>
+            <h1 className="float mt-10 mx-auto font-heading text-center text-8xl">Pit Wall Strategy</h1>
             <p className="float text-center italic">Plan a race strategy.</p>
 
             <main>

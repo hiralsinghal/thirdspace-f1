@@ -5,7 +5,7 @@ import TeamCard from "@/components/TeamCard";
 export default function Teams() {
     return (
         <div className="mx-auto">
-            <h1 className="my-10 mx-auto text-center font-heading text-5xl">Teams</h1>
+            <h1 className="my-10 mx-auto text-center font-heading text-8xl">Teams</h1>
 
             <div className="grid grid-cols-1 gap-y-20 w-230">
                 {(teams as Team[]).map((team) => (
