@@ -1,0 +1,112 @@
+[
+    {
+        "id": "mclaren",
+        "teamName": "McLaren",
+        "constructorsChampionships":10,
+        "driversChampionships": 13,
+        "raceWins": 205,
+        "podiums": 565,
+        "polePositions": 180,
+        "fastestLaps": 185
+    },
+    {
+        "id": "mercedes",
+        "teamName": "Mercedes",
+        "constructorsChampionships": 8,
+        "driversChampionships": 9,
+        "raceWins": 141,
+        "podiums": 329,
+        "polePositions": 153,
+        "fastestLaps": 123
+    },
+    {
+        "id":"redbullracing",
+        "teamName": "Red Bull Racing",
+        "constructorsChampionships": 6,
+        "driversChampionships": 8,
+        "raceWins": 130,
+        "podiums": 304,
+        "polePositions": 111,
+        "fastestLaps":103
+    },
+    {
+        "id":"ferrari",
+        "teamName": "Ferrari",
+        "constructorsChampionships": 16,
+        "driversChampionships": 15,
+        "raceWins": 249,
+        "podiums":840,
+        "polePositions": 254,
+        "fastestLaps": 267
+    },
+    {
+        "id": "williams",
+        "teamName": "Williams",
+        "constructorsChampionships":9,
+        "driversChampionships":7,
+        "raceWins": 114,
+        "podiums": 315,
+        "polePositions":128,
+        "fastestLaps":134
+    },
+    {
+        "id":"racingbulls",
+        "teamName":"Racing Bulls",
+        "constructorsChampionships":0,
+        "driversChampionships":0,
+        "raceWins":0,
+        "podiums":1,
+        "polePositions":0,
+        "fastestLaps":1
+    },
+    {
+        "id":"astonmartin",
+        "teamName":"Aston Martin",
+        "constructorsChampionships":0,
+        "driversChampionships":0,
+        "raceWins":0,
+        "podiums":9,
+        "polePositions":0,
+        "fastestLaps":3
+    },
+    {
+        "id":"haas",
+        "teamName":"Haas",
+        "constructorsChampionships":0,
+        "driversChampionships":0,
+        "raceWins":0,
+        "podiums":0,
+        "polePositions":1,
+        "fastestLaps":3
+    },
+    {
+        "id":"audi",
+        "teamName":"Audi",
+        "constructorsChampionships":0,
+        "driversChampionships":0,
+        "raceWins":0,
+        "podiums":0,
+        "polePositions":0,
+        "fastestLaps":0
+    },
+    {
+        "id":"alpine",
+        "teamName":"Alpine",
+        "constructorsChampionships":0,
+        "driversChampionships":0,
+        "raceWins":1,
+        "podiums":6,
+        "polePositions":1,
+        "fastestLaps":1
+    },
+    {
+        "id":"cadillac",
+        "teamName":"Cadillac",
+        "constructorsChampionships":0,
+        "driversChampionships":0,
+        "raceWins":0,
+        "podiums":0,
+        "polePositions":0,
+        "fastestLaps":0
+    }
+]
