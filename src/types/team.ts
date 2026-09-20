@@ -9,4 +9,5 @@ export interface Team {
     fastestLaps: number;
     teamColor: string;
     color: string;
+    image: string;
 }

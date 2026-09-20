@@ -9,7 +9,8 @@
         "polePositions": 180,
         "fastestLaps": 185,
         "teamColor":"#ff8000",
-        "color":"#ffffff"
+        "color":"#ffffff",
+        "image":"https://media.formula1.com/image/upload/c_lfill,w_3392/q_auto/v1740000001/common/f1/2026/mclaren/2026mclarencarright.webp"
     },
     {
         "id": "mercedes",
@@ -21,7 +22,8 @@
         "polePositions": 153,
         "fastestLaps": 123,
         "teamColor":"#27f4d2",
-        "color":"#ffffff"
+        "color":"#ffffff",
+        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/q_auto/v1740000001/common/f1/2026/mercedes/2026mercedescarright.webp"
     },
     {
         "id":"redbullracing",
@@ -33,7 +35,8 @@
         "polePositions": 111,
         "fastestLaps":103,
         "teamColor":"#3671C6",
-        "color":"#ffffff"
+        "color":"#ffffff",
+        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/q_auto/v1740000001/common/f1/2026/redbullracing/2026redbullracingcarright.webp"
     },
     {
         "id":"ferrari",
@@ -45,7 +48,8 @@
         "polePositions": 254,
         "fastestLaps": 267,
         "teamColor":"#e8002d",
-        "color":"#ffffff"
+        "color":"#ffffff",
+        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/q_auto/v1740000001/common/f1/2026/ferrari/2026ferraricarright.webp"
     },
     {
         "id": "williams",
@@ -57,7 +61,8 @@
         "polePositions":128,
         "fastestLaps":134,
         "teamColor": "#1868db",
-        "color":"#ffffff"
+        "color":"#ffffff",
+        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/q_auto/v1740000001/common/f1/2026/williams/2026williamscarright.webp"
     },
     {
         "id":"racingbulls",
@@ -69,7 +74,8 @@
         "polePositions":0,
         "fastestLaps":1,
         "teamColor": "#6692ff",
-        "color":"#ffffff"
+        "color":"#ffffff",
+        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/q_auto/v1740000001/common/f1/2026/racingbulls/2026racingbullscarright.webp"
     },
     {
         "id":"astonmartin",
@@ -81,7 +87,8 @@
         "polePositions":0,
         "fastestLaps":3,
         "teamColor": "#229971",
-        "color":"#ffffff"
+        "color":"#ffffff",
+        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/q_auto/v1740000001/common/f1/2026/astonmartin/2026astonmartincarright.webp"
     },
     {
         "id":"haas",
@@ -93,7 +100,8 @@
         "polePositions":1,
         "fastestLaps":3,
         "teamColor": "#dee1e2",
-        "color":"#000000"
+        "color":"#000000",
+        "image":"https://media.formula1.com/image/upload/c_lfill,w_3392/q_auto/v1740000001/common/f1/2026/haas/2026haascarright.webp"
     },
     {
         "id":"audi",
@@ -105,7 +113,8 @@
         "polePositions":0,
         "fastestLaps":0,
         "teamColor": "#ff2d00",
-        "color":"#ffffff"
+        "color":"#ffffff",
+        "image":"https://media.formula1.com/image/upload/c_lfill,w_3392/q_auto/v1740000001/common/f1/2026/audi/2026audicarright.webp"
     },
     {
         "id":"alpine",
@@ -117,7 +126,8 @@
         "polePositions":1,
         "fastestLaps":1,
         "teamColor":"#00a1e8",
-        "color":"#ffffff"
+        "color":"#ffffff",
+        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/q_auto/v1740000001/common/f1/2026/alpine/2026alpinecarright.webp"
     },
     {
         "id":"cadillac",
@@ -129,6 +139,7 @@
         "polePositions":0,
         "fastestLaps":0,
         "teamColor": "#aaaaad",
-        "color":"#ffffff"
+        "color":"#ffffff",
+        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/q_auto/v1740000001/common/f1/2026/cadillac/2026cadillaccarright.webp"
     }
 ]
