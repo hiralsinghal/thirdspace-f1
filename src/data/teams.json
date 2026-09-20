@@ -9,7 +9,7 @@
         "polePositions": 180,
         "fastestLaps": 185,
         "teamColor":"#ff8000",
-        "color":"#ffffff",
+        "color":"#000000",
         "image":"https://media.formula1.com/image/upload/c_lfill,w_3392/q_auto/v1740000001/common/f1/2026/mclaren/2026mclarencarright.webp"
     },
     {
@@ -22,7 +22,7 @@
         "polePositions": 153,
         "fastestLaps": 123,
         "teamColor":"#27f4d2",
-        "color":"#ffffff",
+        "color":"#000000",
         "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/q_auto/v1740000001/common/f1/2026/mercedes/2026mercedescarright.webp"
     },
     {

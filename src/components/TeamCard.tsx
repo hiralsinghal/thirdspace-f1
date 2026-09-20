@@ -12,12 +12,12 @@ export default function TeamCard({ team }:{ team: Team }) {
                 className="-z-1 opacity-20 object-contain"
             />
             <div className="p-5 text-xl">
-                <p>Constructors' Championships: {team.constructorsChampionships}</p>
-                <p>Drivers' Championships: {team.driversChampionships}</p>
-                <p>Race Wins: {team.raceWins}</p>
-                <p>Podiums: {team.podiums}</p>
-                <p>Pole Positions: {team.polePositions}</p>
-                <p>Fastest Laps: {team.fastestLaps}</p>
+                <p><b>Constructors' Championships:</b> {team.constructorsChampionships}</p>
+                <p><b>Drivers' Championships:</b> {team.driversChampionships}</p>
+                <p><b>Race Wins:</b>{team.raceWins}</p>
+                <p><b>Podiums:</b> {team.podiums}</p>
+                <p><b>Pole Positions:</b> {team.polePositions}</p>
+                <p><b>Fastest Laps:</b> {team.fastestLaps}</p>
             </div>
             
         </div>

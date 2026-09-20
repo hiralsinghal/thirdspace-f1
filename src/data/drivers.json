@@ -40,7 +40,7 @@
         "wins": 7,
         "podiums": 31,
         "careerPoints": 1244,
-        "color": "#ffffff"
+        "color":"#000000"
     },
     {
         "id": "antonelli",
@@ -54,7 +54,7 @@
         "wins": 8,
         "podiums": 15,
         "careerPoints": 442,
-        "color": "#ffffff"
+        "color":"#000000"
     },
 
     {
