@@ -6,6 +6,7 @@ const NavLinks = [
     { name: "Home", path: "/"},
     { name: "Drivers", path: "/drivers"},
     { name: "Teams", path: "/teams"},
+    { name: "Past Races", path: "/pastraces"},
     { name: "Replay", path: "/replay"},
     { name: "Strategy", path: "/strategy"}
 ]
