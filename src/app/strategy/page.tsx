@@ -1,4 +1,4 @@
-
+import data from "../../../public/data/dashboard_data.json";
 
 export default function Strategy() {
     return (
@@ -9,7 +9,11 @@ export default function Strategy() {
             <main>
                 <div className="controls">
                     <label htmlFor="race">Race</label>
-                    <select id="race"></select>
+                    <select id="race">
+                        {data.races.map((race) => (
+                            <option key={race.id} value={race.id}>{race.title}</option>
+                        ))}
+                    </select>
                 </div>
             </main>
 
@@ -25,7 +29,11 @@ export default function Strategy() {
             <div>
                 <p className="bold">Rival</p>
                 <label htmlFor="rival">Race Against</label>
-                <select id="rival"></select>
+                <select id="rival">
+                    {data.races[0].drivers.map((driver) => (
+                        <option key={driver.code}>{driver.code}</option>
+                    ))}
+                </select>
             </div>
         </div>
     );
