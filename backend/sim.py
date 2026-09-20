@@ -96,3 +96,47 @@ class _C:
             self.n_stops[pm]+=1
         self.age += 1
         return t
+
+
+    def smu(p, s, n=10000, seed=0, rvl=None, pd=0.0, rct=True,sts=None, sto=True, rrv=None):
+        p = {**DFT, **p}
+        N = p["laps"]
+        rng = np.random.default_rng(seed)
+        sa = np.tile(np.asarray(sts, np.int8), (n, 1)) if sts is not None else _sd(p, n, rng)
+        sh = np.exp(rng.normal(0, p["deg_unc_shared"], (n, 3))) if sto else np.zeros((n, 3))
+        lvl = rng.normal(0, p["noise_sd"], (n, N+2)) if sto else np.zeros((n, N+2))
+        mk = lambda: (np.exp(rng.normal(0, p["deg_unc"], (n, 3))) *sh) if sto else np.ones((n, 3))
+        nz = lambda: rng.normal(0, p["noise_sd"], (n, N+2)) if sto else np.zeros((n, N+2))
+        if not sto:
+            p={**p, "pit_sd": 0.0, "slow_stop_p":0.0, "traffic_p":0.0}
+        y = _C(p,s,n,rng,mk(), nz(), lvl)
+        rv = _C(p, rvl, n, rng, mk(), nz(), pd, lvl) if rvl else None
+        for L in range(1, N+1):
+            st = sa[:, L]
+            y.react(L, st, rct)
+            ty = y.lap(L, st)
+            if rv is None:
+                y.T += ty
+                continue
+            rv.react(L, st, rct if rrv is None else rrv)
+            tr = rv.lap(L, st ) + np.where(st==GRN, 0,0)
+            gp = y.T - rv.T
+            ny, nr = y.T + ty, rv.T + tr
+            gr = st == GRN
+            ys = gr & (gp> 0 ) & ((tr-ty)<p["overtake_delta"])
+            rs = gr & (gp< 0 ) & ((ty-tr)<p["overtake_delta"]) 
+            ny = np.where(ys, np.maximum(ny, nr + 0.4), ny)
+            nr = np.where(rs, np.maximum(nr, ny + 0.4), nr
+            )
+            if L + 1 < sa.shape[1]:
+                rst = (st==SC)&(sa[:, L+1]==GRN)
+                g = ny - nr
+                cg = np.sign(g) * (0.8 + p["sc_compress"] * np.maximum(np.abs(g)-0.8, 0))
+                sf = np.where(rst & (np.abs(g)<40), g-cg, 0.0)
+                ny = np.where(sf>0, ny-sf, ny)
+                nr = np.where(sf<0, nr+sf, nr)
+            y.T, rv.T = ny, nr
+        o = dict(T=y.T, stops=y.n_stops, sc=(sa==SC).any(1), vsc=(sa==VSC).any(1))
+        if rv is not None:
+            o.update(T_rival=rv.T, ahead=y.T<rv.T)
+        return o
