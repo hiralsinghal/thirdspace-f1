@@ -58,3 +58,37 @@ class DM:
         wc = np.linalg.lstsq(np.column_stack([np.ones(len(g)), g.age]), g.y, rcond=None)[0]
         lm = len(g)/(len(g) + self.SHRINK_K)
         return lm*wc + (1-lm)*wg
+    def predict(self,dx):
+        o = np.zeros(len(dx))
+        for c in dx.comp.unique():
+            m = (dx.comp==c).values
+            sb = dx[m]
+            w = self._lin_w(c, sb.circuit.iloc[0])
+            if self.kind=="lin":
+                o[m] = w[0] + w[1] * sb.age.values
+            else:
+                rf = sb.copy()
+                rf["age"] = self.A_REF
+                o[m] = self.gbm.predict(self._X(sb)) - self.gbm.predict(self._X(rf)) + w[0] + w[1] * self.A_REF
+        return o
+    def curves(self, c, tt, at, ma=80):
+        o, cp = {}, {}
+        ag = np.arrange(ma+1)
+        for nm,x in CMAP.items():
+            dx = pd.DataFrame(dict(comp=c,age=np.maximum(ag, 1), track_temp=tt,air_temp=at, circuit=c))
+            y = self.predict(dx)
+            s = int(self.support_c.get((c, x), self.support.get(c, 30)))
+            s = max(10, min(s, ma-1))
+            tl=y[max(1, s-8):s+1]
+            sl=max(np.polyfit(np.arrange(len(tl)), tl, 1)[0],0.03)
+            y[ag>s]=y[s]+sl*(ag[ag>s]-s)
+            o[nm]=np.maximum.accumulate(y)
+            cp[nm]=int(np.clip(s *1.15, 12, 60))
+        return o, cp
+
+
+def pcv(fb, circuit):
+    f = fb.get(circuit)
+    if f is None:
+        return None
+    return {c: cff(f,c) for c in f["comp"]}, f
