@@ -7,4 +7,5 @@ export interface Team {
     podiums: number;
     polePositions: number;
     fastestLaps: number;
+    teamColor: string;
 }

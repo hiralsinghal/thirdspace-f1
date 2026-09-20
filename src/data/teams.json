@@ -7,7 +7,8 @@
         "raceWins": 205,
         "podiums": 565,
         "polePositions": 180,
-        "fastestLaps": 185
+        "fastestLaps": 185,
+        "teamColor":"#ff8000"
     },
     {
         "id": "mercedes",
@@ -17,7 +18,8 @@
         "raceWins": 141,
         "podiums": 329,
         "polePositions": 153,
-        "fastestLaps": 123
+        "fastestLaps": 123,
+        "teamColor":"#27f4d2"
     },
     {
         "id":"redbullracing",
@@ -27,7 +29,8 @@
         "raceWins": 130,
         "podiums": 304,
         "polePositions": 111,
-        "fastestLaps":103
+        "fastestLaps":103,
+        "teamColor":"#3671C6"
     },
     {
         "id":"ferrari",
@@ -37,7 +40,8 @@
         "raceWins": 249,
         "podiums":840,
         "polePositions": 254,
-        "fastestLaps": 267
+        "fastestLaps": 267,
+        "teamColor":"#e8002d"
     },
     {
         "id": "williams",
@@ -47,7 +51,8 @@
         "raceWins": 114,
         "podiums": 315,
         "polePositions":128,
-        "fastestLaps":134
+        "fastestLaps":134,
+        "teamColor": "#1868db"
     },
     {
         "id":"racingbulls",
@@ -57,7 +62,8 @@
         "raceWins":0,
         "podiums":1,
         "polePositions":0,
-        "fastestLaps":1
+        "fastestLaps":1,
+        "teamColor": "#6692ff"
     },
     {
         "id":"astonmartin",
@@ -67,7 +73,8 @@
         "raceWins":0,
         "podiums":9,
         "polePositions":0,
-        "fastestLaps":3
+        "fastestLaps":3,
+        "teamColor": "#229971"
     },
     {
         "id":"haas",
@@ -77,7 +84,8 @@
         "raceWins":0,
         "podiums":0,
         "polePositions":1,
-        "fastestLaps":3
+        "fastestLaps":3,
+        "teamColor": "#dee1e2"
     },
     {
         "id":"audi",
@@ -87,7 +95,8 @@
         "raceWins":0,
         "podiums":0,
         "polePositions":0,
-        "fastestLaps":0
+        "fastestLaps":0,
+        "teamColor": "#ff2d00"
     },
     {
         "id":"alpine",
@@ -97,7 +106,8 @@
         "raceWins":1,
         "podiums":6,
         "polePositions":1,
-        "fastestLaps":1
+        "fastestLaps":1,
+        "teamColor":"#00a1e8"
     },
     {
         "id":"cadillac",
@@ -107,6 +117,7 @@
         "raceWins":0,
         "podiums":0,
         "polePositions":0,
-        "fastestLaps":0
+        "fastestLaps":0,
+        "teamColor": "#aaaaad"
     }
 ]
