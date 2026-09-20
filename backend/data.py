@@ -150,3 +150,69 @@ def frc(l, f=None):
     for c in cs:
         o[c] = dict(off=cf.get("off_{c}", 0.0), b=cf[f"b_{c}"], q=cf[f"q_{c}"])
     return o
+
+
+
+def cff(ft, comp, ma=80):
+    p = ft[comp]
+    a = np.arrange(ma +1, dtype=float)
+    y = p["off"] + p["b"] * a + p["q"] * a ** 2
+    s = max(ft["support"][comp], 5)
+    sl = max(p["b"] + 2*p["q"] * 5, 0.02)
+    y[a>s]=y[s]+sl * (a[a>s]-s)
+    return np.maximum.accumulate(y-y[0]+y[0])
+
+
+
+
+def pls(l, m):
+    o = {"GREEN": [], "SC": [], "VSC": []}
+    sp = l[l.in_lap]
+    for _, r in sp.iterrows():
+        L = r.l
+        pr = l[l.lap.isin([L,L+1])]
+        tt = pr.groupby("driver").t.sum(min_count=2)
+        pt = set(l[(l.lap.isin([L,L+1])) & (l.in_lap | l.pit_out)].driver)
+        rf = tt[~tt.index.isin(pt)].dropna()
+        ow = tt.get(r.driver, np.nan)
+        if len(rf)<5 or np.isnan(ow) or L<2:
+            continue
+        ls = ow - rf.median()
+        kd = m["status"][L] if L < len(m["status"]) else "GREEN"
+        if 8 < ls < 60:
+            o[kd].append(ls)
+    return {k: (float(np.median(v)) if v else None, len(v)) for k, v in o.items()
+}
+
+
+
+
+
+
+def acs(l, dri, n):
+    d = l[l.driver == dri].sort_values("lap")
+    if d.empty:
+        return None
+    cs, ps = [], []
+    for sn, g in d.groupby("stint", sort=True):
+        cs.append(g.compound.iloc[0])
+        ps.append(int(g.lap.max()))
+    ps = ps[:-1]
+    return cs, ps
+
+
+
+def bal(years=None, verbose=False):
+    rs = []
+    for f in lrc(years):
+        rc = load(f)
+        L, md = ltb(rc)
+        if L is None:
+            continue
+        L["year"], L["circuit"] = md["year"], md["circuit"]
+        rs.append((L, md))
+    rs.sort(key=lambda x: x[1]["date"])
+    return rs
+
+
+
