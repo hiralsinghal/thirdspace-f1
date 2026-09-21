@@ -88,3 +88,30 @@ o=pd.DataFrame(out)
 for yr in [2024, 2025]:
     s=o[o.year==yr]
     w=s.n/s.n.sum()
+o.to_pickle("/tmp/o.pkl")
+out=[]
+for sk in R.session_key.unique():
+    m=mta[sk]
+    if m["year"]<2024:
+        continue
+    tr, te=R[R.date<m["date"]], R[R.session_key==sk]
+    feats=["comp", "age", "track_temp","air_temp","cid"]
+    g=lgb.LGBMRegressor(n_estimators=300, learning_rate=0.03, num_leaves=7, min_child_samples=200, reg_lambda=10,
+                        subsample=0.8, subsample_freq=1,monotone_constraints=[0,1,0,0,0], verbose=-1).fit(tr[feats], tr.y)
+    y=te.y.values
+    sid=te.sid.values
+    row=dict(year=m["year"],circuit=m["circuit"],n=len(te))
+    for aref in [1,8,15]:
+        ter=te.copy()
+        ter["age"]=aref
+        for lvl, fn in [("lin", lin), ("shrunk", shk)]:
+            p=g.predict(te[feats])-g.predict(ter[feats])+fn(tr,ter)
+            row[f"hyb_{lvl}_{aref}"]=np.mean(np.abs(y-p))
+            row[f"hyb_{lvl}_{aref}_shape"]=np.mean(np.abs(pd.Series(y-p).groupby(sid).transform(lambda x: x-x.mean())))
+    row["lin"]=np.mean(np.abs(y-lin(tr,te)))
+    out.append(row)
+o=pd.DataFrame(out)
+for yr in [2024, 2025]:
+    s=o[o.year==yr]
+    w=s.n/s.n.sum()
+    
