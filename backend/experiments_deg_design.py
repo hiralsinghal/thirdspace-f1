@@ -34,3 +34,25 @@ cid={c:i for i,c in enumerate(sorted(R.circuit.unique()))}
 R["cid"]=R.circuit.map(cid)
 
 
+
+def gbm(tr, te,fs, mn):
+    g=lgb.LGBMRegressor(n_estimators=300, learning_rate=0.03, num_leaves=7, min_child_samples=200,reg_lambda=10, subsample=0.8, subsample_freq=1, monotone_constraints=mn, verbose=-1)
+    g.fit(tr[fs], tr.y)
+    return g.predict(te[fs])
+def lin(tr,te,temp=False):
+    p=np.zeros(len(te))
+    for c in range(3):
+        a=tr[tr.comp==c]
+        b=te.comp==c
+        if not b.any():
+            continue
+        cf = lambda d: [np.ones(len(d)), d.age]+([d.age*(d.track_temp-35)] if temp else [])
+        w=np.linalg.lstsq(np.column_stack(cf(a)),a.y,rcond=None)[0]
+        p[b.values]=np.column_stack(cf(te[b]))@w
+    return p
+def shk(tr,te,k=400):
+    bs=lin(tr,te)
+    p=bs.copy()
+    for c in range(3):
+        g=tr[(tr.comp==c)]
+        A=np.column_stack([np.ones(len(g)),g.age])
