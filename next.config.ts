@@ -5,7 +5,12 @@ const nextConfig: NextConfig = {
     remotePatterns : [
       {
         protocol: 'https',
-        hostname: "media.formula1.com"
+        hostname: "media.formula1.com",
+
+      },
+      {
+        protocol: 'https',
+        hostname: "i.pinimg.com",
 
       },
     ],
