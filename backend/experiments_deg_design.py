@@ -56,3 +56,35 @@ def shk(tr,te,k=400):
     for c in range(3):
         g=tr[(tr.comp==c)]
         A=np.column_stack([np.ones(len(g)),g.age])
+        wg=np.linalg.lstsq(A,g.y, rcond=None)[0]
+        gc=g[g.circuit==te.circuit.iloc[0]]
+        b=(te.comp==c).values
+        if len(gc)<30 or not b.any():
+            continue
+        Ac=np.column_stack([np.ones(len(gc)), gc.age])
+        wc=np.linalg.lstsq(Ac,gc.y,rcond=None)[0]
+        lam=len(gc)/(len(gc)+k)
+        w=lam*wc+(1-lam)*wg
+        p[b]=w[0]+w[1]*te.age.values[b]
+    return p
+out=[]
+for sk in R.session_key.unique():
+    m=mta[sk]
+    if m["year"]<2024:
+        continue
+    tr,te=R[R.date<m["date"]],R[R.session_key==sk]
+    P={"lin":lin(tr,te), "lin_temp":lin(tr,te,True), "shrunk":shk(tr,te),"gbm_nocirc":gbm(tr, te, ["comp", "age", "track_temp", "air_temp"],[0,1,0,0]),
+       "gbm_circ":gbm(tr,te,["comp","age","track_temp","air_temp","cid"],[0,1,0,0,0])}
+    P["blend"]=0.5*P["shrunk"]+0.5*P["gbm_circ"]
+    y=te.y.values
+    sid=te.sid.values
+    row=dict(year=m["year"], circuit=m["circuit"], n=len(te))
+    for k,p in P.items():
+        row[k]=np.mean(np.abs(y-p))
+        r=pd.Series(y-p).groupby(sid).transform(lambda x: x-x.mean())
+        row[k+"_shape"]=np.mean(np.abs(r))
+    out.append(row)
+o=pd.DataFrame(out)
+for yr in [2024, 2025]:
+    s=o[o.year==yr]
+    w=s.n/s.n.sum()
